@@ -1,0 +1,21 @@
+[project]
+name = "modular-rag"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "chroma>=0.2.0",
+    "chromadb>=1.4.1",
+    "dashscope>=1.25.8",
+    "jupyter>=1.1.1",
+    "jupyterlab>=4.5.2",
+    "jupyterlab-language-pack-zh-cn>=4.5.post1",
+    "langchain>=1.2.6",
+    "langchain-community>=0.4.1",
+    "langchain-qwq>=0.3.4",
+    "langgraph>=1.0.6",
+    "notebook>=7.5.2",
+    "pypdf>=6.6.0",
+    "python-dotenv>=1.2.1",
+]
