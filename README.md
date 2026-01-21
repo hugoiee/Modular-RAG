@@ -1,5 +1,8 @@
 # Modular-RAG
 
+# 主要目标
+使用 LangChain 讲 RAG 分解为基本组成部分
+
 模块化 RAG：将 RAG 系统转变为乐高式可重构框架，论文实现。[论文链接](https://arxiv.org/html/2407.21059v1)
 
 实现思路与框架：
