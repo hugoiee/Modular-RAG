@@ -6,7 +6,7 @@
 import os
 from typing import List, Union
 from langchain_core.documents import Document
-from langchain_community.document_loaders import PyPDFLoader, TextLoader
+from langchain_community.document_loaders import PyPDFLoader, TextLoader, WebBaseLoader
 from .base import BaseOperator
 
 
@@ -18,8 +18,7 @@ class LoaderOperator(BaseOperator):
         加载文档
 
         Args:
-            file_path: 文件路径或文件路径列表
-
+            file_path: 文件路径 或 文件路径列表
         Returns:
             Document 对象列表
         """
@@ -48,7 +47,6 @@ class PDFLoaderOperator(LoaderOperator):
 
         Args:
             file_path: PDF 文件路径
-
         Returns:
             Document 对象列表
         """
@@ -79,7 +77,6 @@ class TextLoaderOperator(LoaderOperator):
 
         Args:
             file_path: 文本文件路径
-
         Returns:
             Document 对象列表
         """
@@ -90,6 +87,24 @@ class TextLoaderOperator(LoaderOperator):
         for doc in docs:
             doc.metadata["filename"] = os.path.basename(file_path)
             doc.metadata["file_type"] = "text"
+
+        return docs
+
+
+class WebLoaderOperator(LoaderOperator):
+    """
+    使用 WebBaseLoader 加载 网页html内容
+    """
+    def _load_single_file(self, file_path: str) -> List[Document]:
+        """
+        加载单个html内容
+        :param file_path: 网页路径
+        :return: Document 对象列表
+        """
+        # 并发请求默认每秒 2 次。如果抓取的服务器不关心负载，可以更改 requests_per_second 参数来增加最大并发请求。
+        # 还有 异步加载 和 懒加载 的配置
+        loader = WebBaseLoader(file_path)
+        docs = loader.load()
 
         return docs
 
