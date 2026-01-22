@@ -1,6 +1,6 @@
 """
 Operators 包：索引模块的基本操作单元
-遵循论文的三层架构设计，这些是底层的 operators
+遵循论文的三层架构设计，这些是底层的 indexing_operators
 """
 
 from .base import BaseOperator

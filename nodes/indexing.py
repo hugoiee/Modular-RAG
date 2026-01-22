@@ -23,7 +23,7 @@ from typing import List, Dict, Any, Optional, Union
 from langchain_core.documents import Document
 from langchain_core.vectorstores import VectorStore
 
-from .operators import (
+from .indexing_operators import (
     PDFLoaderOperator,
     WebLoaderOperator,
     TextLoaderOperator,
