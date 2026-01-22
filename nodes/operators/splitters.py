@@ -1,6 +1,6 @@
 """
 文本分块 Operators
-实现论文中提到的多种分块优化策略：
+实现多种分块优化策略：
 1. Sliding Window（滑动窗口）
 2. Metadata Attachment（元数据附加）
 3. Small-to-Big（小到大策略）
@@ -21,12 +21,8 @@ class SplitterOperator(BaseOperator):
     def execute(self, documents: List[Document]) -> List[Document]:
         """
         对文档列表进行分块
-
-        Args:
-            documents: Document 对象列表
-
-        Returns:
-            分块后的 Document 对象列表
+        :param documents:对象列表
+        :return: 分块后的 Document 对象列表
         """
         raise NotImplementedError
 
@@ -39,9 +35,9 @@ class RecursiveSplitterOperator(SplitterOperator):
 
     def __init__(self, config: Dict[str, Any] = None):
         super().__init__(config)
-        self.chunk_size = self.config.get("chunk_size", 1000)
-        self.chunk_overlap = self.config.get("chunk_overlap", 200)  # 滑动窗口重叠
-        self.add_start_index = self.config.get("add_start_index", True)
+        self.chunk_size = self.config.get("chunk_size", 1000) # 每个分块的最大字符数
+        self.chunk_overlap = self.config.get("chunk_overlap", 200)  # 滑动窗口重叠 相邻两个分块之间重叠的部分。
+        self.add_start_index = self.config.get("add_start_index", True) # 记录该分块在原始文档中的起始字符位置。
         self.separators = self.config.get("separators", None)
 
     def execute(self, documents: List[Document]) -> List[Document]:
@@ -115,7 +111,7 @@ class SemanticSplitterOperator(SplitterOperator):
 
 class SmallToBigSplitterOperator(SplitterOperator):
     """
-    Small-to-Big 分块策略（论文核心优化技术）
+    Small-to-Big 分块策略
 
     核心思想：
     1. 创建小块用于检索（提高检索精度）

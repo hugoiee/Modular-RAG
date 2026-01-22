@@ -4,20 +4,21 @@ Operators 包：索引模块的基本操作单元
 """
 
 from .base import BaseOperator
-from .loaders import LoaderOperator, PDFLoaderOperator, TextLoaderOperator
+from .loaders import LoaderOperator, PDFLoaderOperator, TextLoaderOperator, DirectoryLoaderOperator, WebLoaderOperator
 from .splitters import (
     SplitterOperator,
     RecursiveSplitterOperator,
     SemanticSplitterOperator,
-    SmallToBigSplitterOperator
+    SmallToBigSplitterOperator, StructureAwareSplitterOperator
 )
 from .embeddings import EmbeddingOperator, DashScopeEmbeddingOperator
-from .stores import StoreOperator, ChromaStoreOperator
+from .stores import StoreOperator, ChromaStoreOperator, FAISSStoreOperator, InMemoryStoreOperator
 
 __all__ = [
     "BaseOperator",
     "LoaderOperator",
     "PDFLoaderOperator",
+    "WebLoaderOperator",
     "TextLoaderOperator",
     "SplitterOperator",
     "RecursiveSplitterOperator",
@@ -27,4 +28,8 @@ __all__ = [
     "DashScopeEmbeddingOperator",
     "StoreOperator",
     "ChromaStoreOperator",
+    "DirectoryLoaderOperator",
+    "StructureAwareSplitterOperator",
+    "FAISSStoreOperator",
+    "InMemoryStoreOperator",
 ]

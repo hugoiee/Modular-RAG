@@ -25,6 +25,7 @@ from langchain_core.vectorstores import VectorStore
 
 from .operators import (
     PDFLoaderOperator,
+    WebLoaderOperator,
     TextLoaderOperator,
     DirectoryLoaderOperator,
     RecursiveSplitterOperator,
@@ -92,6 +93,8 @@ class IndexModule:
             return TextLoaderOperator(loader_config)
         elif loader_type == "directory":
             return DirectoryLoaderOperator(loader_config)
+        elif loader_type == "web":
+            return WebLoaderOperator(loader_config)
         else:
             print(f"⚠️  未知的 loader 类型: {loader_type}，使用默认 PDF loader")
             return PDFLoaderOperator()

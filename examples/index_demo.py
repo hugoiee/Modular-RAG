@@ -24,7 +24,7 @@ def example_1_basic_indexing():
     print("=" * 70)
 
     config = {
-        "loader": {"type": "directory", "file_extensions": [".pdf", ".txt"]},
+        "loader": {"type": "web", "file_extensions": []},
         "splitter": {
             "type": "recursive",
             "chunk_size": 1000,
@@ -39,7 +39,8 @@ def example_1_basic_indexing():
     }
 
     index_module = IndexModule(config)
-    vectorstore = index_module.index_documents("./doc/金融新闻pdf/")
+    # vectorstore = index_module.index_documents("./doc/",False)
+    vectorstore = index_module.index_documents("https://lilianweng.github.io/posts/2023-06-23-agent/", True)
 
     # 测试检索
     retriever = index_module.get_retriever(
@@ -47,11 +48,11 @@ def example_1_basic_indexing():
         search_kwargs={"k": 3}
     )
 
-    results = retriever.invoke("美国科技行业的现状如何？")
+    results = retriever.invoke("What is Agent")
     print(f"\n🔍 检索结果: 找到 {len(results)} 个相关文档")
     for i, doc in enumerate(results, 1):
         print(f"\n结果 {i}:")
-        print(f"内容: {doc.page_content[:150]}...")
+        print(f"内容: {doc.page_content[:300]}...")
 
     # 打印摘要
     print("\n📊 索引摘要:")
