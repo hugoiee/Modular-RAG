@@ -9,7 +9,7 @@ Query Expansion Operators（查询扩展）
 from typing import List, Dict, Any
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_qwen import ChatQwen
+from langchain_qwq import ChatQwen
 from .base import BasePreRetrievalOperator
 
 

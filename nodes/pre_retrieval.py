@@ -1,7 +1,7 @@
 """
 检索前模块 (Pre-Retrieval Module)
 
-基于论文《Modular RAG》的三层架构设计：
+三层架构设计：
 - 顶层：PreRetrievalModule（检索前模块）
 - 中层：三大类优化策略（Expansion, Transformation, Construction）
 - 底层：Operators（具体的优化技术）
